@@ -10,11 +10,14 @@ class LicenseNumberValidatorMixin:
     def validate(license_number) -> str | ValidationError:
         if (
             (len(license_number) != 8)
-            or ((license_number[:3] != license_number[:3].upper())
-                or (not (license_number[:3]).isalpha()))
+            or (license_number[:3] != license_number[:3].upper())
+            or (not (license_number[:3]).isalpha())
             or (not license_number[3:].isnumeric())
         ):
-            raise ValidationError("Some errors!!")
+            raise ValidationError(
+                "License number must be 8 characters long, "
+                "start with 3 uppercase letters, and end with 5 numbers"
+            )
 
         return license_number
 
