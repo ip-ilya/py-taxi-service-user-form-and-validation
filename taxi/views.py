@@ -116,7 +116,6 @@ def car_toggle_view(request: HttpRequest, pk: int):
         car.drivers.remove(user)
     else:
         car.drivers.add(user)
-
     return HttpResponseRedirect(reverse(
         "taxi:car-detail", kwargs={"pk": car.pk})
     )
